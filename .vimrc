@@ -18,6 +18,8 @@ set expandtab
 "show the name of the file that is edited
 set laststatus=2
 
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+
 "some work related stuff
 au BufRead,BufNewFile,BufEnter */nomis/* setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 au BufRead,BufNewFile,BufEnter */pluto/* setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
