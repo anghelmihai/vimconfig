@@ -3,6 +3,8 @@ call pathogen#helptags()
 syntax on
 filetype plugin indent on
 
+colorscheme neon
+
 set nu
 set autoindent
 set smartindent
