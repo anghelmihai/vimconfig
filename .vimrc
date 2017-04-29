@@ -2,8 +2,9 @@ execute pathogen#infect()
 call pathogen#helptags()
 syntax on
 filetype plugin indent on
+filetype plugin on
 
-colorscheme neon
+colorscheme molokai
 
 set nu
 set autoindent
@@ -22,6 +23,7 @@ set expandtab
 "show the name of the file that is edited
 set laststatus=2
 
+set omnifunc=syntaxcomplete#Complete
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 autocmd FileType tex source ~/.vim/bundle/auctex.vim/ftplugin/auctex.vim
@@ -36,6 +38,8 @@ au BufRead,BufNewFile,BufEnter */pluto-sites/* setlocal tabstop=4 softtabstop=4 
 let g:neocomplete#enable_at_startup = 1
 
 set t_Co=256
+
+set ttyfast
 
 set tabline=%!MyTabLine()  " custom tab pages line
 function MyTabLine()
