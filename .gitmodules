@@ -37,3 +37,6 @@
 [submodule "bundle/vimproc.vim"]
 	path = bundle/vimproc.vim
 	url = https://github.com/Shougo/vimproc.vim
+[submodule "bundle/vim-reunions"]
+	path = bundle/vim-reunions
+	url = https://github.com/osyo-manga/vim-reunions
