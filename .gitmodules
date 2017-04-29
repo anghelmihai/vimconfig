@@ -40,3 +40,6 @@
 [submodule "bundle/vim-reunions"]
 	path = bundle/vim-reunions
 	url = https://github.com/osyo-manga/vim-reunions
+[submodule "bundle/vim-marching"]
+	path = bundle/vim-marching
+	url = https://github.com/osyo-manga/vim-marching
