@@ -43,3 +43,6 @@
 [submodule "bundle/vim-marching"]
 	path = bundle/vim-marching
 	url = https://github.com/osyo-manga/vim-marching
+[submodule "bundle/phpcomplete.vim"]
+	path = bundle/phpcomplete.vim
+	url = https://github.com/shawncplus/phpcomplete.vim
