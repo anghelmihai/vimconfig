@@ -4,26 +4,29 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+syntax enable
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'ervandew/supertab'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-commentary'
 Plugin 'tomtom/tlib_vim.git'
 Plugin 'MarcWeber/vim-addon-mw-utils.git'
-Plugin 'garbas/vim-snipmate'
+Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'rust-lang/rust.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
-syntax on
+filetype on
 filetype plugin indent on
 
 colorscheme molokai
@@ -61,73 +64,16 @@ set t_Co=256
 set ttyfast
 set timeoutlen=1000 ttimeoutlen=10
 
-set tabline=%!MyTabLine()  " custom tab pages line
-function MyTabLine()
-        let s = '' " complete tabline goes here
-        " loop through each tab page
-        for t in range(tabpagenr('$'))
-                " set highlight
-                if t + 1 == tabpagenr()
-                        let s .= '%#TabLineSel#'
-                else
-                        let s .= '%#TabLine#'
-                endif
-                " set the tab page number (for mouse clicks)
-                let s .= '%' . (t + 1) . 'T'
-                let s .= ' '
-                " set page number string
-                let s .= t + 1 . ' '
-                " get buffer names and statuses
-                let n = ''      "temp string for buffer names while we loop and check buftype
-                let m = 0       " &modified counter
-                let bc = len(tabpagebuflist(t + 1))     "counter to avoid last ' '
-                " loop through each buffer in a tab
-                for b in tabpagebuflist(t + 1)
-                        " buffer types: quickfix gets a [Q], help gets [H]{base fname}
-                        " others get 1dir/2dir/3dir/fname shortened to 1/2/3/fname
-                        if getbufvar( b, "&buftype" ) == 'help'
-                                let n .= '[H]' . fnamemodify( bufname(b), ':t:s/.txt$//' )
-                        elseif getbufvar( b, "&buftype" ) == 'quickfix'
-                                let n .= '[Q]'
-                        else
-                                let n .= pathshorten(bufname(b))
-                        endif
-                        " check and ++ tab's &modified count
-                        if getbufvar( b, "&modified" )
-                                let m += 1
-                        endif
-                        " no final ' ' added...formatting looks better done later
-                        if bc > 1
-                                let n .= ' '
-                        endif
-                        let bc -= 1
-                endfor
-                " add modified label [n+] where n pages in tab are modified
-                if m > 0
-                        let s .= '[' . m . '+]'
-                endif
-                " select the highlighting for the buffer names
-                " my default highlighting only underlines the active tab
-                " buffer names.
-                if t + 1 == tabpagenr()
-                        let s .= '%#TabLineSel#'
-                else
-                        let s .= '%#TabLine#'
-                endif
-                " add buffer names
-                if n == ''
-                        let s.= '[New]'
-                else
-                        let s .= n
-                endif
-                " switch to no underlining and add final space to buffer list
-                let s .= ' '
-        endfor
-        " after the last tab fill with TabLineFill and reset tab page nr
-        let s .= '%#TabLineFill#%T'
-        " right-align the label to close the current tab page
-        if tabpagenr('$') > 1
-                let s .= '%=%#TabLineFill#%999Xclose'
-        endif
-        return s
-endfunction
+au BufRead,BufNewFile *.rs set filetype=rust
+
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
