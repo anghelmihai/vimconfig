@@ -22,6 +22,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rust-lang/rust.vim'
+Plugin 'shawncplus/phpcomplete.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -44,6 +45,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+"inoremap <S-Tab> <C-V><Tab>
 
 "show the name of the file that is edited
 set laststatus=2
@@ -55,8 +57,10 @@ set laststatus=2
 
 "some work related stuff
 au BufRead,BufNewFile,BufEnter */nomis/* setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+au BufRead,BufNewFile,BufEnter */puppet/* setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 au BufRead,BufNewFile,BufEnter */pluto/* setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 au BufRead,BufNewFile,BufEnter */pluto-sites/* setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+au BufRead,BufNewFile,BufEnter *snippets setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
 
 set t_Co=256
@@ -77,3 +81,4 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsSnippetDirectories = ['bundle/my-snippets', 'UltiSnips']
