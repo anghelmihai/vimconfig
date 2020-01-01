@@ -20,6 +20,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'idanarye/vim-dutyl'
 call vundle#end()            " Vundle: required
 filetype plugin indent on    " Vundle: required
 
@@ -50,3 +51,5 @@ set backupdir=~/.vimtmpfiles
 set directory=~/.vimtmpfiles
 set incsearch
 set hlsearch
+
+let g:dutyl_stdImportPaths=['~/dlang/dmd-2.088.0/src/phobos/std', '~/dlang/dmd-2.088.0/src/phobos']
